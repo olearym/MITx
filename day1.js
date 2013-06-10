@@ -1,7 +1,6 @@
 function calculate(text) {
     var pattern = /\d+|\+|\-|\*|\/|\(|\)/g;
     var tokens = text.match(pattern);
-    tokens = JSON.stringify(tokens);
     try {
         var val = evaluate(tokens);
         if(tokens.length > 0) {
