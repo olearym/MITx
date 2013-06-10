@@ -1,5 +1,5 @@
 function calculate(text) {
-    var pattern = /\d+|\+|\-|\*|\/|\(|\)/g;
+    var pattern = /\d+(\.\d+)?|\+|\-|\*|\/|\(|\)/g;
     var tokens = text.match(pattern);
     try {
         if(count("(", tokens) !== count(")", tokens)) {
@@ -44,10 +44,10 @@ function read_operand(array) {
     if(num === "-") {
         return -read_operand(array)
     }
-    else if(isNaN(parseInt(num, 10))) {
+    else if(isNaN(parseFloat(num, 10))) {
         throw "number expected";
     } else {
-        return parseInt(num, 10);
+        return parseFloat(num, 10);
     }
 }
 
