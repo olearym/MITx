@@ -2,6 +2,9 @@ function calculate(text) {
     var pattern = /\d+|\+|\-|\*|\/|\(|\)/g;
     var tokens = text.match(pattern);
     try {
+        if(count("(", tokens) !== count(")", tokens)) {
+            throw "unequal number of parantheses";
+        }
         var val = evaluate(tokens);
         if(tokens.length > 0) {
             throw "ill-formed expression";
@@ -11,7 +14,15 @@ function calculate(text) {
         return err;
     }
 }
-
+function count(item, array) { //counts the number of items matching "item" in an array
+    var num = 0;
+    for(var i = 0; i < array.length; i++) {
+        if(array[i] === item) {
+            num++;
+        }
+    }
+    return num;
+}
 function setup_calc(div) {
     var input = $('<input></input>', {type: "text", size: 50});
     var output = $("<div></div>");
@@ -26,7 +37,14 @@ function setup_calc(div) {
 function read_operand(array) {
     var num = array[0];
     array.shift();
-    if(isNaN(parseInt(num, 10))) {
+    console.log(array)
+    if(num === "(") {
+        return evaluate(array);
+    }
+    if(num === "-") {
+        return -read_operand(array)
+    }
+    else if(isNaN(parseInt(num, 10))) {
         throw "number expected";
     } else {
         return parseInt(num, 10);
@@ -37,11 +55,18 @@ function evaluate(array) {
     if(array.length === 0) {
         throw "missing operand";
     }
+    if(operator === ")") {
+            array.shift();
+            return value;
+    }
     var value = read_operand(array);
     var patterns = /\+|\-|\*|\//g;
     while(array.length > 0) {
         var operator = array[0];
         array.shift();
+        if(operator === ")") {
+            return value;
+        }
         if(operator.match(patterns) === null) {
             throw "unrecognized operator";
         }
