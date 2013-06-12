@@ -1,7 +1,7 @@
 #back{
 background: linear-gradient(to bottom, #DFDFDF, #AEAEAE);
     color:black;
-    padding:10px;
+    padding:20px;
     margin: 10pt;
     border-style:solid;
     border-width:1px;
@@ -41,4 +41,19 @@ background: linear-gradient(to bottom, #DFDFDF, #AEAEAE);
     border-width:5pt;
     color:black;
 
+}
+
+#xmax_label {
+    position: relative;
+    right: -390px;
+}
+#ymin_label {
+    position: relative;
+    right: 30px;
+    top: -10px;
+}
+#ymax_label {
+    position: relative;
+    right: 40px;
+    top: -400px;
 }

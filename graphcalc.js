@@ -16,7 +16,7 @@ var graphcalc = (function () {
             ctx.textBaseline="middle";
             ctx.fillText(tree,100,100);
         }
-    	else{
+        else{
 
     	    var xtemp=x1;
             var y1=calculator.evaluate(tree,{e: Math.E, pi: Math.PI, x: x1});
@@ -41,13 +41,12 @@ var graphcalc = (function () {
                 var yp=points[i][1];
                  ctx.lineTo((xp-x1)/dx,400-(yp-y1)/dy);
             }
-            ctx.lineWidth=10;
+            ctx.lineWidth=5;
             ctx.strokeStyle="red";
             //ctx.lineCap="round";
             //ctx.lineJoin="round";
             ctx.stroke();
-            
-            
+            return [ymin,ymax]
     	}
     }
     
@@ -55,9 +54,10 @@ var graphcalc = (function () {
 
     	var back=$('<div id="back">'); 
      	var JQcanvas=$('<canvas id="art" width="400" height="400"></canvas>');
+        var r0=$('<div id = "r0">');
     	var r1=$('<div id="r1">'); 
     	var r2=$('<div id="r2">'); 
-    	var r3=$('<div id="r3">'); 
+    	var r3=$('<div id="r3">');
     	var func=$('<input></input>',{type: "text1", size: 50});
     	var f=$('<lable>f(x): </lable>');
       	r1.append(f,func);
@@ -67,9 +67,17 @@ var graphcalc = (function () {
     	var xmaxin=$('<input></input>',{type: "text3", size: 50});
     	r2.append(mnx,xminin,mxx,xmaxin);
     	var but=$('<button>Plot</button>');
-        but.bind("click",function(){graph(JQcanvas, func.val(),parseInt(xminin.val()),parseInt(xmaxin.val()))});
+        but.bind("click",function() {
+            
+            var ylist = graph(JQcanvas, func.val(),parseInt(xminin.val()),parseInt(xmaxin.val()));
+            var xmin = $('<label id = "xmin_label"></label>').text(parseInt(xminin.val()));
+            var xmax = $('<label id = "xmax_label"></label>').text(parseInt(xmaxin.val()));
+            var ymin = $('<label id = "ymin_label"></label>').text(parseInt(ylist[0]));
+            var ymax = $('<label id = "ymax_label"></label>').text(Math.round((ylist[1])));
+            r0.append(xmin, xmax, ymin, ymax);
+            });
         r3.append(but);
-    	back.append(JQcanvas,r1,r2,r3);
+    	back.append(JQcanvas,r0,r1,r2,r3);
     	$(div).append(back);
 
 
