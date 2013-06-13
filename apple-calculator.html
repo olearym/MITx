@@ -10,7 +10,7 @@
 <body>
 <div id = "calc">
 <div class = "row" id = "row0">
-<div class = "input" type = "text" size = 50>
+<div class = "input" type = "text" size = 50 id = "input_box">
     <div id= "calculation"></div>
     <div id="result"></div>
 </div>
@@ -22,32 +22,32 @@
     <button class= "last" id="mr">MR</button>
 </div>
 <div class = "row" id = "row2">
-     <button id="cbutton">C</button>
+     <button class = "clear_button" id="cbutton">C</button>
      <button id="plusminus">&plusmn;</button>
-     <button id="divide">&divide;</button>
-     <button class= "last" id="times">&times;</button>
+     <button class = "operator_button" id="divide">&divide;</button>
+     <button class = "operator_button" class= "last" id="times">&times;</button>
 </div>
 <div class = "row" id = "row3">
-    <button id="seven">7</button>
-    <button id="eight">8</button>
-    <button id="nine">9</button>
-    <button class= "last"  id="minus">-</button>
+    <button class = "num_button" id="seven">7</button>
+    <button class = "num_button" id="eight">8</button>
+    <button class = "num_button" id="nine">9</button>
+    <button class = "operator_button" class= "last"  id="minus">-</button>
 </div>
 <div class = "row" id = "row4">
-    <button id="four">4</button>
-    <button id="five">5</button>
-    <button id="six">6</button>
-    <button class= "last" id="plus">+</button>
+    <button class = "num_button" id="four">4</button>
+    <button class = "num_button" id="five">5</button>
+    <button class = "num_button" id="six">6</button>
+    <button class = "operator_button" class= "last" id="plus">+</button>
 </div>
 <div class = "row" id = "row5">
-    <button id="one">1</button>
-    <button id="two">2</button>
-    <button id="three">3</button>
-    <button class= "last" id = "equals">=</button>
+    <button class = "num_button" id="one">1</button>
+    <button class = "num_button" id="two">2</button>
+    <button class = "num_button" id="three">3</button>
+    <button class = "equal_button" class= "last" id = "equals">=</button>
 </div>
 <div class = "row" id = "row5">
-    <button class = "zero">0</button>
-    <button class = "decimal">.</button>
+    <button class = "num_button" class = "zero" id = "zero">0</button>
+    <button class = "num_button" class = "decimal">.</button>
     
 </div>
 </div>

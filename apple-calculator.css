@@ -26,30 +26,32 @@ body{
 }
 
 #mr{
-   margin-left:8px;    
+   margin-left:5px;    
 }
 #times{
-   margin-left:8px;    
+   margin-left:5px;    
 }
 #minus{
-   margin-left:8px;    
+   margin-left:5px;    
 }
 #plus{
-   margin-left:8px;    
+   margin-left:5px;    
 }
 
 .row .input {
-    width: 380px;
+    width: 360px;
     height: 90px;
     margin: 5px;
+    padding: 10px;
     border-style: inset;
     border-color: #ECECEC;
     border-radius: 10px;
     border-width: 3px;
     background-color: #F0FACA;
     box-shadow: 0 3px 10px #7D7D7E inset, 0 3px 5px #ECECEC;
-    font-size:16pt;
+    font-size:24pt;
     margin-bottom: 15px;
+    text-align: right;
 }
 
 #calc{
@@ -64,8 +66,8 @@ body{
     width:400;
     padding:10;
 }
-.row .zero {
-    width: 189px;
+#zero {
+    width: 188px;
 }
 
 .row #equals{
