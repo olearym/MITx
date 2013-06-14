@@ -79,6 +79,7 @@ var graphcalc = (function () {
             console.log($(this).attr("id"))
             input_string += input;
             decimal_in_input = false
+            $("#input_box").html(input_string)
             console.log(input_string);
         });
     }
@@ -98,7 +99,8 @@ var graphcalc = (function () {
             // }
             decimal_in_input = false
             $("#input_box").html(String(calculator.evaluate(calculator.parse(input_string), {e: Math.E, pi: Math.PI})))
-            input_string = ""
+            var ans = String(calculator.evaluate(calculator.parse(input_string), {e: Math.E, pi: Math.PI}))
+            input_string = ans
         });
 
     }
