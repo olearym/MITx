@@ -47,7 +47,7 @@ var graphcalc = (function () {
                  ctx.lineTo((xp-x1)/dx,400-(yp-y1)/dy);
             }
             ctx.lineWidth=5;
-            ctx.strokeStyle="red";
+            ctx.strokeStyle="gray";
             //ctx.lineCap="round";
             //ctx.lineJoin="round";
             ctx.stroke();
@@ -59,6 +59,7 @@ var graphcalc = (function () {
     function setup_num_buttons() {
         $('.num_button').on("click",function() {
             var input = $(this).text();
+            console.log(input)
             if(!isNaN(parseInt(input, 10))) {
                 input_string += input;
                 $("#input_box").html(input_string);
@@ -67,6 +68,31 @@ var graphcalc = (function () {
             else if(input === ".") if(!decimal_in_input){
                 decimal_in_input = true;
                 input_string += input;
+                $("#input_box").html(input_string);
+                console.log(input_string);
+            };
+            if(input === "pi") {
+                input = Math.PI;
+                input_string += input;
+                $("#input_box").html(input_string);
+                console.log(input_string);
+            };
+            if(input === "e") {
+                console.log("It's an e!")
+                input = Math.E;
+                console.log(input)
+                input_string += input;
+                $("#input_box").html(input_string);
+                console.log(input_string);
+            }
+            if(input === '(') {
+                input_string += input;
+                $("#input_box").html(input_string);
+                console.log(input_string);
+            }
+            if(input === ')') {
+                input_string += input;
+                $("#input_box").html(input_string);
                 console.log(input_string);
             }
             
@@ -104,27 +130,9 @@ var graphcalc = (function () {
         });
 
     }
-    
-    function setup(div) {
 
-        var graphed = false
-    	var back=$('<div id="back">'); 
-     	var JQcanvas=$('<canvas id="art" width="400" height="400"></canvas>');
-        var r0=$('<div id = "r0">');
-    	var r1=$('<div id="r1">'); 
-    	var r2=$('<div id="r2">'); 
-    	var r3=$('<div id="r3">');
-    	var func=$('<input></input>',{type: "text1", size: 50});
-    	var f=$('<lable>f(x): </lable>');
-      	r1.append(f,func);
-    	var mnx=$('<lable>min x: </lable>');
-    	var xminin=$('<input></input>',{type: "text2", size: 50});
-    	var mxx=$('<lable>max x: </lable>');
-    	var xmaxin=$('<input></input>',{type: "text3", size: 50});
-    	r2.append(mnx,xminin,mxx,xmaxin);
-    	var but=$('<button>Plot</button>');
-        but.bind("click",function() {
-            
+    function setup_plot_button(JQcanvas, xminin, xmaxin, func, r0, graphed) {
+        $('.plot_button').on("click", function() {
             var ylist = graph(JQcanvas, func.val(),parseInt(xminin.val()),parseInt(xmaxin.val()));
             if (graphed) {
                 document.getElementById("xmin_label").parentNode.removeChild(document.getElementById("xmin_label"));
@@ -137,9 +145,67 @@ var graphcalc = (function () {
             var ymin = $('<label id = "ymin_label"></label>').text(parseInt(ylist[0]));
             var ymax = $('<label id = "ymax_label"></label>').text(Math.round((ylist[1])));
             r0.append(xmin, xmax, ymin, ymax);
-            graphed = true
-            });
-        r3.append(but);
+            graphed = true;
+        });
+    }
+
+    function setup_function_button() {
+        var function_isOn = false
+        $('.function_button').on("click", function() {
+            if (!function_isOn) {
+                function_isOn = true;
+                $(".function-input").css('visibility', 'visible');
+                $(".x-input").css('visibility', 'visible');
+                $(".function-label").css('visibility', 'visible');
+                $(".graph-canvas").css('visibility', 'visible');
+                $(".input").css('visibility', 'hidden');
+            } else {
+                function_isOn = false;
+                $(".function-input").css('visibility', 'hidden');
+                $(".x-input").css('visibility', 'hidden');
+                $(".function-label").css('visibility', 'hidden');
+                $(".graph-canvas").css('visibility', 'hidden');
+                $(".input").css('visibility', 'visible');
+            }
+        })
+    }
+    
+    function setup(div) {
+
+        var graphed = false
+        var calc_body=$('<div id="calc_body">')
+    	var back=$('<div id="back">'); 
+     	var JQcanvas=$('<canvas class = "graph-canvas" id="art" width="400" height="400"></canvas>');
+        var r0=$('<div id = "r0">');
+    	var r1=$('<div id="r1">'); 
+    	var r2=$('<div id="r2">'); 
+    	var r3=$('<div id="r3">');
+    	var func=$('<input class="function-input" "text1"></input>',{type: "text1", size: 50});
+    	var f=$('<label class="function-label">f(x): </label>');
+      	r1.append(f,func);
+    	var mnx=$('<label class="function-label">min x: </label>');
+    	var xminin=$('<input class="x-input" "text2"></input>',{type: "text2", size: 50});
+    	var mxx=$('<label class="function-label">max x: </label>');
+    	var xmaxin=$('<input class="x-input" "text3"></input>',{type: "text3", size: 50});
+    	r2.append(mnx,xminin,mxx,xmaxin);
+    	// var but=$('<button>Plot</button>');
+     //    but.bind("click",function() {
+            
+     //        var ylist = graph(JQcanvas, func.val(),parseInt(xminin.val()),parseInt(xmaxin.val()));
+     //        if (graphed) {
+     //            document.getElementById("xmin_label").parentNode.removeChild(document.getElementById("xmin_label"));
+     //            document.getElementById("xmax_label").parentNode.removeChild(document.getElementById("xmax_label"));
+     //            document.getElementById("ymin_label").parentNode.removeChild(document.getElementById("ymin_label"));
+     //            document.getElementById("ymax_label").parentNode.removeChild(document.getElementById("ymax_label"));
+     //        };
+     //        var xmin = $('<label id = "xmin_label"></label>').text(parseInt(xminin.val()));
+     //        var xmax = $('<label id = "xmax_label"></label>').text(parseInt(xmaxin.val()));
+     //        var ymin = $('<label id = "ymin_label"></label>').text(parseInt(ylist[0]));
+     //        var ymax = $('<label id = "ymax_label"></label>').text(Math.round((ylist[1])));
+     //        r0.append(xmin, xmax, ymin, ymax);
+     //        graphed = true
+     //        });
+     //    r3.append(but);
 
         var numpad_template = ''
         +'<div id = "calc">'
@@ -150,14 +216,20 @@ var graphcalc = (function () {
         +'   </div>'
         +'   </div>'
         +'   <div class = "row" id = "row1">'
-        +'       <button id="mc">MC</button>'
-        +'       <button id="mplus">M+</button>'
-        +'        <button id="mminus">M-</button>'
-        +'        <button class= "last" id="mr">MR</button>'
+        +'       <button class="function_button">f(x)</button>'
+        +'       <button class="plot_button">Plot</button>'
+        +'        <button id="cos">cos(</button>'
+        +'        <button class= "last" id="sin">sin(</button>'
+        +'    </div>'
+        +'    <div class = "row" id = "row1">'
+        +'       <button class="num_button">(</button>'
+        +'       <button class="num_button">)</button>'
+        +'        <button class="num_button" id="e">e</button>'
+        +'        <button class= "last" "num_button" id="pi">pi</button>'
         +'    </div>'
         +'    <div class = "row" id = "row2">'
         +'         <button class = "clear_button" id="cbutton">C</button>'
-        +'         <button id="plusminus">&plusmn;</button>'
+        +'         <button class = "operator_button" id="^">^</button>'
         +'         <button class = "operator_button" id="/">&divide;</button>'
         +'         <button class = "operator_button" class= "last" id="*">&times;</button>'
         +'    </div>'
@@ -181,7 +253,7 @@ var graphcalc = (function () {
         +'    </div>'
         +'    <div class = "row" id = "row5">'
         +'        <button class = "num_button" class = "zero" id = "zero">0</button>'
-        +'       <button class = "num_button" class = "decimal">.</button>'      
+        +'       <button class = "num_button" class = "decimal">.</button>'     
         +'    </div>'
         +'</div>';
 
@@ -192,8 +264,8 @@ var graphcalc = (function () {
         setup_operator_buttons();
         setup_equal_button();
         setup_clear_button();
-
-
+        setup_plot_button(JQcanvas, xminin, xmaxin, func, r0, graphed);
+        setup_function_button();
 
     }
     exports.setup = setup;
