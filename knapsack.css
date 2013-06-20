@@ -1,0 +1,34 @@
+.location .items {
+	border: 1px solid black;
+	width: 300px;
+	height: 300px;
+}
+
+.location {
+	float: left;
+	margin: 20px;
+}
+
+
+.items img {
+	width: 100px;
+	height: 100px;
+}
+
+.item {
+	float: left;
+}
+
+.alert {
+	opacity: 0;
+	border-radius: 10px;
+	background-color: darkred;
+	text-align: center;
+	color: white;
+	padding: 20px;
+	width: 300px;
+	position: relative;
+	top: 50px;
+	left: 50px;
+
+}
