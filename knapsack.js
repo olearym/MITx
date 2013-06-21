@@ -1,6 +1,6 @@
 var explanation = (function() {
 	function setup(div) {
-		var title = $("<h1>The Burglar's Dilema</h1>");
+		var title = $("<h1>The Burglar's Dilemma</h1>");
 		var p1 = $("<p>Being a burglar isn't easy! Our friend above has just entered a house"
 		 +" and is trying to decide what to take. Unfortunately his knapsack only holds 20kg."
 		 +" What strategy should he use in picking objects so as to maximize the value of his haul?</p>");
@@ -45,8 +45,8 @@ var visualization = (function () {
 	// reset() -- sets model to initial values
 	function Model(items, maxWeight) {
 		var eventHandlers = EventHandler();
-		heldValue = 0;
-		heldWeight = 0;
+		var heldValue = 0;
+		var heldWeight = 0;
 
 		function reset() {
 			heldValue = 0;
@@ -110,12 +110,13 @@ var visualization = (function () {
 	}
 
 	function View(div, controller, model) {
-		var alert = $('<div class=alert>Oh no! Your knapsack is too heavy... :(</div>');
+		var alert = $('<div class=alert span12>Oh no! Your knapsack full... :(</div>');
 		div.append(alert);
+		inventory = div.append($('<div class=row-fluid></div>'))
 		function showAlert() {
-			alert.animate({opacity:0.5}, 2000)
-			alert.animate({opacity:0.5}, 1000)
-			alert.animate({opacity:0}, 2000)
+			alert.animate({opacity:0.9}, 2000);
+			alert.animate({opacity:0.9}, 1000);
+			alert.animate({opacity:0}, 2000);
 		}
 		controller.on('full knapsack', showAlert);
 
@@ -135,16 +136,16 @@ var visualization = (function () {
 			controller.itemClicked(event.target.item);
 		})
 		
-		var home = $("<div class='location'><header>Home</header><div class='items'></div></div>")
+		var home = $("<div class='span5 location'><header><img src='house.png' class='header-house'></header><div class='span12 items'></div></div>")
 		var homeItems = home.find(".items");
 		
-		var knapsack = $("<div class='location'>"
-					+"	 <header>Knapsack ($<span class=value>0</span>/<span class='weight'>0</span>kg)</header>"
-					+"	 <div class='items'></div></div>");
+		var knapsack = $("<div class='span5 location'>"
+					+"	 <header><img src='burglar.png' class='header-burglar'><span class='total'>($<span class=value>0</span>/<span class='weight'>0</span>kg)</span></header>"
+					+"	 <div class='span12 items'></div></div>");
 		var knapsackItems = knapsack.find(".items");
 		
-		div.append(home);
-		div.append(knapsack);
+		inventory.append(home);
+		inventory.append(knapsack);
 
 		function updateItems() {
 			homeItems.empty();
@@ -190,6 +191,7 @@ var visualization = (function () {
 
 		});
 		div.empty()
+
 		var maxWeight = 20
 		var model =  Model(items, maxWeight);
 		var controller = Controller(model);

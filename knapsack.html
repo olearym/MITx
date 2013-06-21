@@ -1,10 +1,12 @@
 <html>
 <head>
-<title>Knapsack Problem</title>
+<title>Bootstrapped Knapsack Problem</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<!-- <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
-<script src="bootstrap/js/bootstrap.min.js"></script> -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="knapsack.js"></script>
 <link rel="stylesheet" type="text/css" href="knapsack.css">
 <style>
@@ -12,16 +14,76 @@
 </style>
 </head>
 <body>
+	<style>
+	background-image: url(home_background.jpg);
+    background-repeat:no-repeat;
+    background-attachment:fixed;
+    </style>
 <div>
+	<div class="container-fluid" style="background-image: url(home_background2.jpg); background-attachment:fixed;">
 
-	<div class="explanation"></div>
-	<div class="visualization">
-		<img src="clock.png" data-value="175" data-weight="10" data-name="clock">
-		<img src="painting.png" data-value="90" data-weight="9" data-name="painting">
-		<img src="radio.png" data-value="20" data-weight="4" data-name="radio">
-		<img src="vase.png" data-value="50" data-weight="2" data-name="vase">
-		<img src="book.png" data-value="10" data-weight="1" data-name="book">
-		<img src="computer.png" data-value="200" data-weight="20" data-name="computer">
+		<div class="navbar navbar-inverse navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container-fluid">
+				<button type="button" class="btn btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="brand" href="#">Knapsack!</a>
+				<div class="nav-collapse collapse" style="height:0px;">
+				<ul class="nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					</ul>
+				</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-fluid" style="margin-top:60px; padding-right:0px; padding-left:0px;">
+		<div class="row-fluid">
+			<div class="span2">
+				<ul class="well nav nav-list" style="padding-top: 9px; padding-bottom: 9px; margin-bottom: 20px; opacity: .80;">
+					<li class="nav-header">Sidebar</li>
+					<li class="active"><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li class="nav-header">Sidebar</li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li class="nav-header">Sidebar</li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+					<li><a href="#">Link</a></li>
+				</ul>
+			</div>
+
+			<div class="span10">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="explanation"></div>
+					</div>
+				</div>
+				<div class="row-fluid">
+
+					<div class="row-fluid visualization">
+						<img src="clock.png" data-value="175" data-weight="10" data-name="clock">
+						<img src="painting.png" data-value="90" data-weight="9" data-name="painting">
+						<img src="radio.png" data-value="20" data-weight="4" data-name="radio">
+						<img src="vase.png" data-value="50" data-weight="2" data-name="vase">
+						<img src="book.png" data-value="10" data-weight="1" data-name="book">
+						<img src="computer.png" data-value="200" data-weight="20" data-name="computer">
+					</div>
+
+				</div>
+			</div>
+		</div>
 	</div>
 </div>
 </body>
