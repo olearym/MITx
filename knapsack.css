@@ -13,7 +13,10 @@
 
 .location .total {
 	margin: 5px;
-	padding: 10px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
 	background-color: white;
 	opacity: .80;
 	border-radius: 3px;
@@ -26,7 +29,15 @@
 	border-radius: 10px;
 }
 
+.gexplanation {
+	background-color: white;
+	opacity: .80;
+	padding: 10px;
+	border-radius: 10px;
+}
+
 .items img {
+	margin: 3px;
 	width: 75px;
 	height: 75px;
 }
@@ -34,7 +45,10 @@
 .item {
 	float: left;
 	opacity: 1;
+	font-size: 8pt;
+	text-align: center;
 }
+
 
 .alert {
 	opacity: 0;
@@ -45,10 +59,39 @@
 
 }
 
+.correct {
+	opacity: 0;
+	border-radius: 10px;
+	background-color: darkgreen;
+	text-align: center;
+	color: white;
+}
+
+.wrong {
+	opacity: 0;
+	border-radius: 10px;
+	background-color: darkred;
+	text-align: center;
+	color: white;
+}
+
 .location .header-house {
 	max-width: 100%;
 }
 
 .location .header-burglar {
 	max-width: 49%;
+}
+
+.location .header-wheelbarrow {
+	max-width: 75%;
+}
+
+.location .header-gardener {
+	max-width: 69%;
+}
+button {
+	opacity: .80;
+	border-radius: 5px;
+	background-color: white;
 }

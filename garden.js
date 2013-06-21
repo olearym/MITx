@@ -1,15 +1,15 @@
-var explanation = (function() {
+var gexplanation = (function() {
 	function setup(div) {
-		var title = $("<h1>The Burglar's Dilemma</h1>");
-		var p1 = $("<p>Being a burglar isn't easy! Our friend below has just entered a house"
-		 +" and is trying to decide what to take. Unfortunately his knapsack only holds 20kg."
-		 +" Help him pick the objects that will maximize the value of his haul! Just click on an item to change its location.</p>");
+		var title = $("<h1>The Garden</h1>");
+		var p1 = $("<p>Mindy is trying to fill her garden with as many flowers as she can."
+		 +" Sadly, she only has $50 to spend on flowers. Can you help her maximize the number"
+		 +" of flowers she gets out of her $50? Just click on an item to transfer it between Mindy and the wheelbarrow!</p>");
 		div.append(title, p1);
 	}
 	return {setup:setup}
 }())
 
-var visualization = (function () {
+var gvisualization = (function () {
 
 	// on(event_string, callback) -- register handler for event
 	// trigger(event_string, data) -- call all callbacks for event_string
@@ -105,13 +105,12 @@ var visualization = (function () {
 				eventHandlers.trigger("full knapsack", item);
 			}
 		}
-
 		return { itemClicked: itemClicked, on: eventHandlers.on };
 
 	}
 
 	function View(div, controller, model) {
-		var alert = $('<div class=alert span12>Oh no! Your knapsack full... :(</div>');
+		var alert = $('<div class=alert span12>Oh no! You do not have enough money for that... :(</div>');
 		var correctBox = $('<div class=correct span12>Yes! That is correct!</div>');
 		var wrongBox = $('<div class=wrong span12>Nope, that is not the best solution.</div>');
 		div.append(alert, correctBox, wrongBox);
@@ -123,7 +122,7 @@ var visualization = (function () {
 		}
 
 		function checkAnswer() {
-			if (model.getValue() == 275) {
+			if (model.getValue() == 34) {
 				return true;
 			}
 			return false
@@ -149,7 +148,7 @@ var visualization = (function () {
 		    var itemDiv = $('<div class="item"></div>');
 		    itemDiv.append(item.image);
 		    itemDiv.append($('<br>'));
-		    itemDiv.append('$'+item.value+', '+item.weight+'kg');
+		    itemDiv.append(item.value+' flowers, $'+item.weight+' ');
 		    item.image[0].item = item;
 		    item.image = itemDiv;
 		}
@@ -157,15 +156,15 @@ var visualization = (function () {
 		div.on("click", function(event) {
 			controller.itemClicked(event.target.item);
 		})
-		
-		var home = $("<div class='span5 location'><header><img src='house.png' class='header-house'></header><div class='span12 items'></div></div>")
+
+		var home = $("<div class='span5 location'><header><img src='wheelbarrow.gif' class='header-wheelbarrow'></header><div class='span12 items'></div></div>")
 		var homeItems = home.find(".items");
-		
+
 		var knapsack = $("<div class='span5 location'>"
-					+"	 <header><img src='burglar.png' class='header-burglar'><span class='total'>($<span class=value>0</span>/<span class='weight'>0</span>kg)</span></header>"
+					+"	 <header><img src='gardener2.gif' class='header-gardener'><span class='total'>(<span class=value>0</span> flowers/$<span class='weight'>0</span>)</span></header>"
 					+"	 <div class='span12 items'></div></div>");
 		var knapsackItems = knapsack.find(".items");
-		
+
 		inventory.append(home);
 		inventory.append(knapsack);
 
@@ -196,11 +195,9 @@ var visualization = (function () {
 		}
 		model.on('updateWeight', updateWeight)
 
-
 		var check = $('<button>Am I right?</button>')
 		check.on('click', showCheck)
 		div.append(check)
-
 
 		return{};
 
@@ -217,12 +214,10 @@ var visualization = (function () {
 			var item = { name: name, value: value, weight: weight, image: image }
 			items[name] = item
 
-			itemname: {}
-
 		});
 		div.empty()
 
-		var maxWeight = 20
+		var maxWeight = 50
 		var model =  Model(items, maxWeight);
 		var controller = Controller(model);
 		var view = View(div, controller, model)
@@ -234,13 +229,13 @@ var visualization = (function () {
 }());
 
 $(document).ready(function() {
-	$(".explanation").each(function() {
-		explanation.setup($(this));
+	$(".gexplanation").each(function() {
+		gexplanation.setup($(this));
 	});
 });
 
 $(document).ready(function() {
-	$(".visualization").each(function() {
-		visualization.setup($(this));
-	});
+	$(".gvisualization").each(function() {
+		gvisualization.setup($(this));
+			});
 });
